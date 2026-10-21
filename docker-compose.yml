@@ -1,0 +1,41 @@
+services:
+  web:
+    build:
+      context: .
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    environment:
+      DJANGO_SETTINGS_MODULE: digitalmarketplace.docker_settings
+    ports:
+      - "8000:8000"
+    volumes:
+      - media_data:/app/media
+    depends_on:
+      - redis
+
+  celery:
+    build:
+      context: .
+    command: celery -A digitalmarketplace.celery worker --loglevel=info
+    environment:
+      DJANGO_SETTINGS_MODULE: digitalmarketplace.docker_settings
+    volumes:
+      - media_data:/app/media
+    depends_on:
+      - redis
+      
+  redis:
+    image: redis:7-alpine
+
+  smtp4dev:
+    image: rnwood/smtp4dev:latest
+    environment:
+      DJANGO_SETTINGS_MODULE: digitalmarketplace.docker_settings
+    ports:
+      - "2525:25"
+      - "3000:80"
+
+volumes:
+  media_data:
+

@@ -1,0 +1,27 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+djoser = "*"
+mysqlclient = "*"
+django-rest-framework = "*"
+pillow = "*"
+django-filter = "*"
+django-debug-toolbar = "*"
+django-redis = "*"
+celery = "*"
+locust = "*"
+bakery = "*"
+model-bakery = "*"
+django = "*"
+
+[dev-packages]
+smtp4dev = "*"
+pytest-django = "*"
+model-bakery = "*"
+pytest = "*"
+
+[requires]
+python_version = "3.14"

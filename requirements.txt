@@ -1,0 +1,13 @@
+Django==6.0.8
+djangorestframework
+djoser
+mysqlclient
+Pillow
+django-filter
+django-debug-toolbar
+django-redis
+celery
+PyJWT
+pytest
+pytest-django
+model-bakery

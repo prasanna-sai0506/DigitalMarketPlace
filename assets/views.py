@@ -81,27 +81,16 @@ class AssetDetailAPIView(APIView):
 
     def put(self, request, pk):
         asset = self.get_object(pk)
-
-        serializer = AssetSerializer(
-            asset,
-            data=request.data,
-        )
+        serializer = AssetSerializer(asset,data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-
         return Response(serializer.data)
 
     def patch(self, request, pk):
         asset = self.get_object(pk)
-
-        serializer = AssetSerializer(
-            asset,
-            data=request.data,
-            partial=True,
-        )
+        serializer = AssetSerializer(asset,data=request.data,partial=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-
         return Response(serializer.data)
 
     def delete(self, request, pk):
